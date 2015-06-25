@@ -1,0 +1,23 @@
+{
+  "name": "ghost",
+  "version": "1.0.0",
+  "description": "Clone of ghost blog",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/treyhuffine/ghost-clone.git"
+  },
+  "author": "Trey Huffine",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/treyhuffine/ghost-clone/issues"
+  },
+  "homepage": "https://github.com/treyhuffine/ghost-clone#readme",
+  "dependencies": {
+    "firebase": "^2.2.7",
+    "request": "^2.58.0"
+  }
+}
