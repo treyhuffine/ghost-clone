@@ -5,8 +5,7 @@ var fs = require("fs"),
     exec = require("child_process").exec,
     Firebase = require('firebase'),
     marked = require("marked");
-// http.createServer(responseHandler).listen(process.env.PORT);
-http.createServer(responseHandler).listen(8888);
+http.createServer(responseHandler).listen(process.env.PORT);
 function responseHandler(req, resp) {
   if (req.url.match("fav")) {
     resp.end("");
