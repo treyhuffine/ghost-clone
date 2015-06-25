@@ -14,15 +14,13 @@ function responseHandler(req, resp) {
     return;
   }
 
-  // if (req.url === "/") {
-  //   resp.writeHead(200, {"Content-Type": "text/html"});
-  //   fs.readFile('index.html', 'utf8', function (err,data) {
-  //     resp.end(data);
-  //   });
-  // }
-  console.log(req.url.substring(0,10));
-  if (req.url.substring(0,10) === "/markdown/" || req.url === "") {
-    resp.writeHead(200, {"Content-Type": "text/html"});
+  resp.writeHead(200, {"Content-Type": "text/html"});
+  if (req.url.substring(0,10) === "/markdown/") {
+    fs.readFile('index.html', 'utf8', function (err,data) {
+      resp.end(data);
+    });
+  }
+  else if (req.url === "/"){
     fs.readFile('index.html', 'utf8', function (err,data) {
       resp.end(data);
     });
