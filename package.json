@@ -18,6 +18,7 @@
   "homepage": "https://github.com/treyhuffine/ghost-clone#readme",
   "dependencies": {
     "firebase": "^2.2.7",
+    "marked": "^0.3.3",
     "request": "^2.58.0"
   }
 }
