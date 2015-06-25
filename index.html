@@ -11,11 +11,18 @@
 
     <script>
       var app = angular.module("markdown", []);
-      app.controller("markdownCtrl", function($scope, $http) {
+      app.controller("markdownCtrl", function($scope, $http, $sce) {
+        $scope.parsedHtml = "";
+        $scope.trustedHtml = "";
         $scope.trackMarkdown = function() {
-          console.log(encodeURIComponent('/markdown/' + $scope.markdownText));
-          $http.get('/markdown/' + encodeURIComponent($scope.markdownText));
-        }
+          $http.get('/markdown/' + encodeURIComponent($scope.markdownText))
+            .success(function(data) {
+              $scope.parsedHtml = $sce.trustAsHtml(data);
+            })
+            .error(function() {
+              console.log("error");
+            });
+        };
       });
     </script>
     <style>
@@ -45,6 +52,9 @@
       textarea {
         resize: none;
       }
+      .parsed-html-container {
+        padding: 5px;
+      }
     </style>
   </head>
   <body ng-app="markdown" ng-controller="markdownCtrl">
@@ -61,7 +71,8 @@
         <div class="col-sm-6">
           <h4 class="center">Rendered HTML</h4>
           <div class="rendered-html">
-
+            <div class="parsed-html-container" ng-bind-html="parsedHtml">
+            </div>
           </div>
         </div>
       </div>
