@@ -10,25 +10,39 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 
     <script>
-      console.log("working")
+      var app = angular.module("markdown", []);
+      app.controller("markdownCtrl", function($scope, $http) {
+
+      });
     </script>
     <style>
-      .title-head {
+      .center {
         text-align: center;
+      }
+      .markdown-input, .rendered-html {
+        width: 95%;
+        height: 80%;
+      }
+      .rendered-html {
+        border: 1px solid black;
       }
     </style>
   </head>
   <body>
     <div class="container-fluid">
-      <div class="row title-head">
+      <div class="row title-head center">
         Title
       </div>
       <div class="row">
-        <div class="col-md-6">
-          Text
+        <div class="col-sm-6">
+          <h2>Markdown Text</h2>
+          <textarea class="markdown-input" placeholder="Input markdown..."></textarea>
         </div>
-        <div class="col-md-6">
-          Markdown
+        <div class="col-sm-6">
+          <h2>Rendered HTML</h2>
+          <div class="rendered-html">
+
+          </div>
         </div>
       </div>
     </div>
