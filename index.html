@@ -12,7 +12,10 @@
     <script>
       var app = angular.module("markdown", []);
       app.controller("markdownCtrl", function($scope, $http) {
-
+        $scope.trackMarkdown = function() {
+          console.log(encodeURIComponent('/markdown/' + $scope.markdownText));
+          $http.get('/markdown/' + encodeURIComponent($scope.markdownText));
+        }
       });
     </script>
     <style>
@@ -44,7 +47,7 @@
       }
     </style>
   </head>
-  <body>
+  <body ng-app="markdown" ng-controller="markdownCtrl">
     <div class="container-fluid">
       <div class="row center" id="title-head">
         <h3 class="title-text">Convert Markdown to HTML</h3>
@@ -52,7 +55,8 @@
       <div class="row">
         <div class="col-sm-6">
           <h4 class="center">Markdown Text</h4>
-          <textarea class="markdown-input" placeholder="Input markdown..."></textarea>
+          <textarea class="markdown-input" placeholder="Input markdown..."
+                    ng-model="markdownText" ng-keyup="trackMarkdown()"></textarea>
         </div>
         <div class="col-sm-6">
           <h4 class="center">Rendered HTML</h4>
