@@ -14,14 +14,18 @@
       app.controller("markdownCtrl", function($scope, $http, $sce) {
         $scope.parsedHtml = "";
         $scope.trustedHtml = "";
+        var timeoutId;
         $scope.trackMarkdown = function() {
-          $http.get('/markdown/' + encodeURIComponent($scope.markdownText))
+          clearTimeout(timeoutId);
+          timeoutId = setTimeout(function() {
+            $http.get('/markdown/' + encodeURIComponent($scope.markdownText))
             .success(function(data) {
               $scope.parsedHtml = $sce.trustAsHtml(data);
             })
             .error(function() {
               console.log("error");
             });
+          }, 1000);
         };
       });
     </script>
