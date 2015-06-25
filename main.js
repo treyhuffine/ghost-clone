@@ -21,7 +21,7 @@ function responseHandler(req, resp) {
   //   });
   // }
   console.log(req.url.substring(0,10));
-  if (req.url.substring(0,10) === "/markdown/") {
+  if (req.url.substring(0,10) === "/markdown/" || req.url === "") {
     resp.writeHead(200, {"Content-Type": "text/html"});
     fs.readFile('index.html', 'utf8', function (err,data) {
       resp.end(data);
