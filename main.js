@@ -7,7 +7,7 @@ var fs = require("fs"),
     marked = require("marked");
 // http.createServer(responseHandler).listen(process.env.PORT);
 http.createServer(responseHandler).listen(8888);
-
+console.log(marked('I am using __markdown__.'));
 function responseHandler(req, resp) {
   if (req.url.match("fav")) {
     resp.end("");
@@ -16,9 +16,7 @@ function responseHandler(req, resp) {
 
   resp.writeHead(200, {"Content-Type": "text/html"});
   if (req.url.substring(0,10) === "/markdown/") {
-    fs.readFile('index.html', 'utf8', function (err,data) {
-      resp.end(data);
-    });
+    resp.end(marked(decodeURI(req.url.slice(10))));
   }
   else if (req.url === "/"){
     fs.readFile('index.html', 'utf8', function (err,data) {
